@@ -11,7 +11,10 @@ HackerNews/API: Documentation and Samples for the Official HN API を利用し�
 ・APIを使って取得する→テキスト確認
     -APIってなんだっけ?→テキスト確認
     -出力したい場所のソースコードを検証で確認→テキストの内容確認
+        -title
+        -title link
     -場所にそって抽出するようにコードを書く→テキストの内容確認
+    -それを何回か繰り返す→なんかい？とりあえず3回
 ・エラーの理解と解消
 
 ●具体例、出力結果
@@ -25,9 +28,29 @@ HackerNews/API: Documentation and Samples for the Official HN API を利用し�
 """
 
 import time
+from re import split
+
 import requests
 
+# # 変数にHTTPライブラリで、APIの情報を取得して代入する
+# responce = requests.get('https://zipcloud.ibsnet.co.jp/api/search?zipcode=0287111')
+#
+# print(responce)
+# print(responce.text)
+# newstories
+# 30158720.
+# 30158821
+import strip as strip
 
-for i in range(10):
-    time.sleep(1) # ここで1秒止まる
-    print(i)
+responce = requests.get('https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty')
+
+res_list =responce.text
+print(res_list[:30])
+
+
+# # 抽出すると、リストが出てくる。よって、リストで変数を作って、変数を1つだけ取り出す。その一つをURLに入力して出力、同じことを3回だけ繰り返す。
+# # print(abc[:4])だと、最初から４つ
+#
+# for i in range(3):
+#     time.sleep(1) # ここで1秒止まる
+#     print(i)
